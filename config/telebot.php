@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\TeleBotHandlers\StartConversation;
+
 return [
     /*-------------------------------------------------------------------------
     | Default Bot Name
@@ -50,7 +52,7 @@ return [
             ],
 
             'handlers' => [
-                App\Http\TeleBotHandlers\TeleBotHandler::class
+                StartConversation::class
             ],
         ],
 
