@@ -23,11 +23,11 @@ class StoreSchedule extends CommandHandler
         $schedule = $this->update->callback_query->data;
 
         $responseForSchedule = match ($this->update->callback_query->data) {
-          Schedule::EveryMorning->value =>  $this->answerWithButton('В какое время вы хотите получать прогноз?', $this->getButtonWithMorningTime()),
-          Schedule::EveryNoon->value =>  $this->answerWithButton('В какое время вы хотите получать прогноз?', $this->getButtonWithNoonTime()),
-          Schedule::EveryEvening->value =>  $this->answerWithButton('В какое время вы хотите получать прогноз?', $this->getButtonWithEveningTime()),
-          Schedule::EverySunday->value =>  $this->answerWithButton('В какое время вы хотите получать прогноз?', $this->getButtonWithSundayTime()),
-          default => null
+            Schedule::EveryMorning->value =>  $this->answerWithButton('В какое время вы хотите получать прогноз?', $this->getButtonWithMorningTime()),
+            Schedule::EveryNoon->value =>  $this->answerWithButton('В какое время вы хотите получать прогноз?', $this->getButtonWithNoonTime()),
+            Schedule::EveryEvening->value =>  $this->answerWithButton('В какое время вы хотите получать прогноз?', $this->getButtonWithEveningTime()),
+            Schedule::EverySunday->value =>  $this->answerWithButton('В какое время вы хотите получать прогноз?', $this->getButtonWithSundayTime()),
+            default => null
         };
         if ($responseForSchedule) {
             ConsoleCommandSchedule::storeCommandScheduleForUser($user->tg_user_id, $schedule);

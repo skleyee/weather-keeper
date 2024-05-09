@@ -19,7 +19,7 @@ class OpenWeather implements WeatherService
     public function getTodaysWeatherByCoordinates(array $coordinates)
     {
         try {
-            $response = $this->httpClient->get(config('weather.api_url') . '/data/2.5/weather?lat=' . $coordinates['lat'] . '&lon=' . $coordinates['lon'] . '&appid=' . config('weather.api_key') . '&lang=ru&units=metric');
+            $response = $this->httpClient->get(config('weather.api_url') . '/data/2.5/weather?lat=' . $coordinates['latitude'] . '&lon=' . $coordinates['longitude'] . '&appid=' . config('weather.api_key') . '&lang=ru&units=metric');
 
             if ($response->getStatusCode() !== 200) {
                 logger('request failed: ' . $response->getStatusCode());
@@ -80,5 +80,18 @@ class OpenWeather implements WeatherService
         } catch (HttpResponseException $exception) {
             logger('getCityByCoordinates http request error: ' . $exception->getCode(), [$exception->getMessage()]);
         }
+    }
+
+    public function getAggregatedTodaysWeather(array $coordinates)
+    {
+        $data = $this->getTodaysWeatherByCoordinates($coordinates);
+
+        return [
+            'temperature' => $data->main->temp,
+            'temperature_feels_like' => $data->main->feels_like,
+            'description' => $data->weather[0]->description,
+            'humidity' => $data->main->humidity,
+            'wind_speed' => $data->wind->speed
+        ];
     }
 }

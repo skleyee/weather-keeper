@@ -14,7 +14,9 @@ class TelegramUser extends Model
 
     protected $fillable = [
         'tg_user_id',
-        'city'
+        'city',
+        'latitude',
+        'longitude'
     ];
 
     public function consoleCommandSchedule(): HasOne

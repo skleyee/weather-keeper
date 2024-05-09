@@ -25,6 +25,7 @@ class GetUserLocationAndAskForSchedule extends CommandHandler
     {
         $user = $this->firstOrCreateTgUser($this->update->message->chat->id);
         $location = $this->update->message->location;
+        logger('location', [$location]);
         if ($city = $this->getCityByCoordinates($location)) {
             $user->update([
                 'latitude' => $location->latitude,

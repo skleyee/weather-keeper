@@ -19,22 +19,26 @@ class ConsoleCommandSchedule extends Model
 
     public static function storeCommandScheduleForUser($tgUserId, $schedule)
     {
-        return self::query()->updateOrCreate([
+        return self::query()->updateOrCreate(
+            [
             'tg_user_id' =>  $tgUserId,
         ],
-        [
+            [
             'schedule'   =>  $schedule
-        ]);
+        ]
+        );
     }
 
     public static function storeCommandScheduleTime($tgUserId, $schedule, $time)
     {
-        return self::query()->updateOrCreate([
+        return self::query()->updateOrCreate(
+            [
             'tg_user_id' =>  $tgUserId,
             'schedule'   =>  $schedule
         ],
-        [
+            [
             'push_time' => $time
-        ]);
+        ]
+        );
     }
 }

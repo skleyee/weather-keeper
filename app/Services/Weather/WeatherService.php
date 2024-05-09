@@ -4,7 +4,7 @@ namespace App\Services\Weather;
 
 interface WeatherService
 {
-   function getTodaysWeatherByCoordinates(array $coordinates);
+    public function getTodaysWeatherByCoordinates(array $coordinates);
 
-   function getCoordinatesByCity(string $city);
+    public function getCoordinatesByCity(string $city);
 }
