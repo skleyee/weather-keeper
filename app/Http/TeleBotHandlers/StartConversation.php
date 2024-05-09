@@ -3,9 +3,7 @@
 namespace App\Http\TeleBotHandlers;
 
 use App\Models\TelegramUser;
-use App\Enums\District;
 use GuzzleHttp\Promise\PromiseInterface;
-use Illuminate\Support\Facades\Log;
 use WeStacks\TeleBot\Handlers\CommandHandler;
 use WeStacks\TeleBot\Objects\Message;
 
@@ -22,7 +20,7 @@ class StartConversation extends CommandHandler
     {
         if (!(TelegramUser::query()->firstWhere('tg_user_id', $this->update->message->chat->id)) || $this->update->message->text == '/start') {
             $this->firstOrCreateTgUser($this->update->message->chat->id);
-            return $this->answerWithButton('Привет! В каком районе Брянска ты живёшь?', $this->getButtonWithDistricts());
+            return $this->answerWithButton('Привет! Отправь своё местоположение, чтобы я мог давать тебе актуальный прогноз погоды:)', $this->getLocationButton());
         }
     }
 
@@ -39,29 +37,15 @@ class StartConversation extends CommandHandler
         ]);
     }
 
-    protected function getButtonWithDistricts()
+    protected function getLocationButton(): array
     {
         return [
             'keyboard' => [
                 [
-                    [
-                        'text' => District::getReadableOption(District::Soviet),
-                    ],
-                    [
-                        'text' => District::getReadableOption(District::Bezhitsky),
-                    ],
-                    [
-                        'text' => District::getReadableOption(District::Volodarsky),
-                    ],
-                    [
-                        'text' => District::getReadableOption(District::Fokinsky),
-                    ],
+                    ['text' => 'Отправить местоположение', 'request_location' => true]
                 ]
             ],
-            'one_time_keyboard' => true,
             'resize_keyboard' => true
         ];
     }
-
-
 }

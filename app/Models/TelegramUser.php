@@ -4,8 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class TelegramUser extends Model
@@ -16,7 +14,7 @@ class TelegramUser extends Model
 
     protected $fillable = [
         'tg_user_id',
-        'district'
+        'city'
     ];
 
     public function consoleCommandSchedule(): HasOne

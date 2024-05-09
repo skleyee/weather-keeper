@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\TeleBotHandlers\GetDistrictAndAskForSchedule;
+use App\Http\TeleBotHandlers\GetUserLocationAndAskForSchedule;
 use App\Http\TeleBotHandlers\StartConversation;
 use App\Http\TeleBotHandlers\StoreSchedule;
 use App\Http\TeleBotHandlers\StoreScheduleTime;
@@ -56,7 +56,7 @@ return [
 
             'handlers' => [
                 StartConversation::class,
-                GetDistrictAndAskForSchedule::class,
+                GetUserLocationAndAskForSchedule::class,
                 StoreSchedule::class,
                 StoreScheduleTime::class,
             ],

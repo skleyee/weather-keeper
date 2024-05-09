@@ -9,7 +9,10 @@ class TelegramUserController extends Controller
 {
     public function xdd(WeatherService $weatherService)
     {
-        $coordinetes = $weatherService->getCoordinatesByCity('London');
-        dd($weatherService->getTodaysWeatherByCoordinates($coordinetes));
+        $coordinetes = [
+            'latitude' => '53.266448',
+            'longitude' => '34.327511'
+        ];
+        dd($weatherService->getCityByCoordinates($coordinetes));
     }
 }
