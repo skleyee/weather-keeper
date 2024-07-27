@@ -62,7 +62,7 @@ class sendRegularWeatherInfo extends Command
 
     private function checkIfItIsEveryDaySchedule(string $usersSchedule): bool
     {
-       return in_array($usersSchedule, Schedule::getEveryDayValues());
+        return in_array($usersSchedule, Schedule::getEveryDayValues());
     }
 
     private function checkIfItIsSundaySchedule(string $usersSchedule): bool
