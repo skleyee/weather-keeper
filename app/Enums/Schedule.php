@@ -9,4 +9,12 @@ enum Schedule: string
     case EveryEvening = 'every_evening';
     case EverySunday = 'every_sunday';
 
+    public static function getEveryDayValues(): array
+    {
+        return [
+          self::EveryMorning->value,
+          self::EveryNoon->value,
+          self::EveryEvening->value,
+        ];
+    }
 }
